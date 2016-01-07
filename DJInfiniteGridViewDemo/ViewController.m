@@ -41,7 +41,7 @@
 
 - (NSUInteger)numberOfGridsInInfiniteGridView:(DJInfiniteGridView *)gridView
 {
-    return 2;
+    return 3;
 }
 
 @end

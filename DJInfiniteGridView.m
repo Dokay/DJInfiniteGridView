@@ -13,12 +13,12 @@
 
 @interface DJInfiniteGridView()<UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIImageView *leftImageView;
-@property (nonatomic, strong) UIImageView *centerImageView;
-@property (nonatomic, strong) UIImageView *rightImageView;
-
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, assign) NSInteger MaxImageCount;
+
+@property (nonatomic, strong) NSMutableArray *viewsArray;
+@property (nonatomic, strong) UIView *leftMirrorView;
+@property (nonatomic, strong) UIView *rightMirrorView;
 
 @end
 
@@ -125,62 +125,67 @@
 - (void)changeImageLeft:(NSInteger)LeftIndex center:(NSInteger)centerIndex right:(NSInteger)rightIndex {
     
     if (self.dataSource != nil && [self.dataSource respondsToSelector:@selector(infiniteGridView:forIndex:)]) {
-        if (LeftIndex < self.MaxImageCount) {
-            _leftImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:LeftIndex]).image;
+        UIView *leftView;
+        if (centerIndex == 0 && self.MaxImageCount == 2) {
+            leftView = [self viewWithIndex:centerIndex isMirror:YES];
         }else{
-            _leftImageView.image = nil;
+            leftView = [self viewWithIndex:LeftIndex isMirror:NO];
         }
+        leftView.frame = CGRectMake(0, 0,myWidth, myHeight);
         
-        if (centerIndex < self.MaxImageCount) {
-            _centerImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:centerIndex]).image;
-            _centerImageView.backgroundColor = [UIColor redColor];
-        }else{
-            _centerImageView.image = nil;
-        }
+        UIView *centerView = [self viewWithIndex:centerIndex isMirror:NO];
+        centerView.frame = CGRectMake(myWidth, 0,myWidth, myHeight);
         
-        if (rightIndex < self.MaxImageCount) {
-            _rightImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:rightIndex]).image;
-        }else{
-            _rightImageView.image = nil;
-        }
-        
-    }else{
-        _leftImageView = nil;
-        _centerImageView = nil;
-        _rightImageView = nil;
+        UIView *rightView = [self viewWithIndex:rightIndex isMirror:NO];
+        rightView.frame = CGRectMake(myWidth * 2, 0,myWidth, myHeight);
     }
     
     [_scrollView setContentOffset:CGPointMake(myWidth, 0)];
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(infiniteGridView:didScrollToPage:)]) {
+        [self.delegate infiniteGridView:self didScrollToPage:centerIndex];
+    }
 }
 
 #pragma mark - private method
 - (void)setupCurrentView
 {
     [self addSubview:self.scrollView];
-    [self prepareImageView];
 }
 
-- (void)prepareImageView {
-    
-    UIImageView *left = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,myWidth, myHeight)];
-    UIImageView *center = [[UIImageView alloc] initWithFrame:CGRectMake(myWidth, 0,myWidth, myHeight)];
-    UIImageView *right = [[UIImageView alloc] initWithFrame:CGRectMake(myWidth * 2, 0,myWidth, myHeight)];
-    
-    center.userInteractionEnabled = YES;
-    [center addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewDidTap)]];
-    
-    [_scrollView addSubview:left];
-    [_scrollView addSubview:center];
-    [_scrollView addSubview:right];
-    
-    _leftImageView = left;
-    _centerImageView = center;
-    _rightImageView = right;
-}
-
-- (void)imageViewDidTap
+- (void)imageViewDidTap:(UITapGestureRecognizer *)sender
 {
-   
+    NSInteger index = sender.view.tag;
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(infiniteGridView:didSelectGridAtIndex:)]) {
+        [self.delegate infiniteGridView:self didSelectGridAtIndex:index];
+    }
+}
+
+- (UIView *)viewWithIndex:(NSInteger)index isMirror:(BOOL)bMirror
+{
+    UIView *view;
+    if (!bMirror) {
+        if (self.viewsArray.count > index) {
+            view = [self.viewsArray objectAtIndex:index];
+            if ((NSNull *)view == [NSNull null]) {
+                view = [self.dataSource infiniteGridView:self forIndex:index];
+                view.tag = index;
+                view.userInteractionEnabled = YES;
+                [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewDidTap:)]];
+                [self.viewsArray replaceObjectAtIndex:index withObject:view];
+                [self.scrollView addSubview:view];
+            }
+            return view;
+        }
+        
+    }else{
+        if (index == 0) {
+            return self.leftMirrorView;
+        }else{
+            return self.rightMirrorView;
+        }
+    }
+    
+    return nil;
 }
 
 #pragma mark - getter
@@ -194,6 +199,35 @@
         _scrollView.delegate = self;
     }
     return _scrollView;
+}
+
+- (NSMutableArray *)viewsArray
+{
+    if (_viewsArray == nil) {
+        _viewsArray = [NSMutableArray arrayWithCapacity:self.MaxImageCount];
+        for (int i = 0; i < self.MaxImageCount; i++) {
+            [_viewsArray addObject:[NSNull null]];
+        }
+    }
+    return _viewsArray;
+}
+
+- (UIView *)leftMirrorView
+{
+    if (_leftMirrorView == nil) {
+        _leftMirrorView = [self.dataSource infiniteGridView:self forIndex:0];
+        [self.scrollView addSubview:_leftMirrorView];
+    }
+    return _leftMirrorView;
+}
+
+- (UIView *)rightMirrorView
+{
+    if (_rightMirrorView == nil) {
+        _rightMirrorView = [self.dataSource infiniteGridView:self forIndex:self.MaxImageCount];
+        [self addSubview:_rightMirrorView];
+    }
+    return _rightMirrorView;
 }
 
 @end
