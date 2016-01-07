@@ -7,28 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E18F0B71C3E9F8500CAB02F /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0B31C3E9F8500CAB02F /* 4.png */; };
-		4E18F0B81C3E9F8500CAB02F /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0B41C3E9F8500CAB02F /* 5.png */; };
-		4E18F0B91C3E9F8500CAB02F /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0B51C3E9F8500CAB02F /* 6.png */; };
-		4E18F0BA1C3E9F8500CAB02F /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0B61C3E9F8500CAB02F /* 7.png */; };
+		4E18F0C41C3EA91700CAB02F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0BC1C3EA91700CAB02F /* 1.png */; };
+		4E18F0C51C3EA91700CAB02F /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0BD1C3EA91700CAB02F /* 2.png */; };
+		4E18F0C61C3EA91700CAB02F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0BE1C3EA91700CAB02F /* 3.png */; };
+		4E18F0C71C3EA91700CAB02F /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0BF1C3EA91700CAB02F /* 4.png */; };
+		4E18F0C81C3EA91700CAB02F /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0C01C3EA91700CAB02F /* 5.png */; };
+		4E18F0C91C3EA91700CAB02F /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0C11C3EA91700CAB02F /* 6.png */; };
+		4E18F0CA1C3EA91700CAB02F /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0C21C3EA91700CAB02F /* 7.png */; };
+		4E18F0CB1C3EA91700CAB02F /* place.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E18F0C31C3EA91700CAB02F /* place.png */; };
+		4E18F0CF1C3EA92100CAB02F /* DJInfiniteGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E18F0CE1C3EA92100CAB02F /* DJInfiniteGridView.m */; };
 		4EBEB98E1C3E3AA500A8C8EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBEB98D1C3E3AA500A8C8EC /* main.m */; };
 		4EBEB9911C3E3AA500A8C8EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBEB9901C3E3AA500A8C8EC /* AppDelegate.m */; };
 		4EBEB9941C3E3AA500A8C8EC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBEB9931C3E3AA500A8C8EC /* ViewController.m */; };
 		4EBEB9971C3E3AA500A8C8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBEB9951C3E3AA500A8C8EC /* Main.storyboard */; };
 		4EBEB9991C3E3AA500A8C8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBEB9981C3E3AA500A8C8EC /* Assets.xcassets */; };
 		4EBEB99C1C3E3AA500A8C8EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBEB99A1C3E3AA500A8C8EC /* LaunchScreen.storyboard */; };
-		4EBEB9A91C3E3AF300A8C8EC /* DJInfiniteGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBEB9A81C3E3AF300A8C8EC /* DJInfiniteGridView.m */; };
-		4EBEB9B91C3E492500A8C8EC /* place.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBEB9B81C3E492500A8C8EC /* place.png */; };
-		4EBEB9BB1C3E4A5100A8C8EC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBEB9BA1C3E4A5000A8C8EC /* 1.png */; };
-		4EBEB9BF1C3E4C1400A8C8EC /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBEB9BE1C3E4C1400A8C8EC /* 2.png */; };
-		4EBEB9C11C3E4CC500A8C8EC /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBEB9C01C3E4CC500A8C8EC /* 3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4E18F0B31C3E9F8500CAB02F /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
-		4E18F0B41C3E9F8500CAB02F /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
-		4E18F0B51C3E9F8500CAB02F /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
-		4E18F0B61C3E9F8500CAB02F /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		4E18F0BC1C3EA91700CAB02F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		4E18F0BD1C3EA91700CAB02F /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		4E18F0BE1C3EA91700CAB02F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		4E18F0BF1C3EA91700CAB02F /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		4E18F0C01C3EA91700CAB02F /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		4E18F0C11C3EA91700CAB02F /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		4E18F0C21C3EA91700CAB02F /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		4E18F0C31C3EA91700CAB02F /* place.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = place.png; sourceTree = "<group>"; };
+		4E18F0CD1C3EA92100CAB02F /* DJInfiniteGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJInfiniteGridView.h; sourceTree = "<group>"; };
+		4E18F0CE1C3EA92100CAB02F /* DJInfiniteGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJInfiniteGridView.m; sourceTree = "<group>"; };
 		4EBEB9891C3E3AA500A8C8EC /* DJInfiniteGridViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJInfiniteGridViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBEB98D1C3E3AA500A8C8EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4EBEB98F1C3E3AA500A8C8EC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,12 +45,6 @@
 		4EBEB9981C3E3AA500A8C8EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4EBEB99B1C3E3AA500A8C8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EBEB99D1C3E3AA500A8C8EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4EBEB9A71C3E3AF300A8C8EC /* DJInfiniteGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJInfiniteGridView.h; sourceTree = "<group>"; };
-		4EBEB9A81C3E3AF300A8C8EC /* DJInfiniteGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJInfiniteGridView.m; sourceTree = "<group>"; };
-		4EBEB9B81C3E492500A8C8EC /* place.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = place.png; sourceTree = "<group>"; };
-		4EBEB9BA1C3E4A5000A8C8EC /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		4EBEB9BE1C3E4C1400A8C8EC /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		4EBEB9C01C3E4CC500A8C8EC /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,18 +58,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E18F0BB1C3EA91700CAB02F /* images */ = {
+			isa = PBXGroup;
+			children = (
+				4E18F0BC1C3EA91700CAB02F /* 1.png */,
+				4E18F0BD1C3EA91700CAB02F /* 2.png */,
+				4E18F0BE1C3EA91700CAB02F /* 3.png */,
+				4E18F0BF1C3EA91700CAB02F /* 4.png */,
+				4E18F0C01C3EA91700CAB02F /* 5.png */,
+				4E18F0C11C3EA91700CAB02F /* 6.png */,
+				4E18F0C21C3EA91700CAB02F /* 7.png */,
+				4E18F0C31C3EA91700CAB02F /* place.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		4E18F0CC1C3EA92100CAB02F /* DJInfiniteGridView */ = {
+			isa = PBXGroup;
+			children = (
+				4E18F0CD1C3EA92100CAB02F /* DJInfiniteGridView.h */,
+				4E18F0CE1C3EA92100CAB02F /* DJInfiniteGridView.m */,
+			);
+			path = DJInfiniteGridView;
+			sourceTree = "<group>";
+		};
 		4EBEB9801C3E3AA500A8C8EC = {
 			isa = PBXGroup;
 			children = (
-				4EBEB9BA1C3E4A5000A8C8EC /* 1.png */,
-				4EBEB9BE1C3E4C1400A8C8EC /* 2.png */,
-				4EBEB9C01C3E4CC500A8C8EC /* 3.png */,
-				4E18F0B31C3E9F8500CAB02F /* 4.png */,
-				4E18F0B41C3E9F8500CAB02F /* 5.png */,
-				4E18F0B51C3E9F8500CAB02F /* 6.png */,
-				4E18F0B61C3E9F8500CAB02F /* 7.png */,
-				4EBEB9B81C3E492500A8C8EC /* place.png */,
-				4EBEB9A31C3E3AB400A8C8EC /* DJInfiniteGridView */,
+				4E18F0CC1C3EA92100CAB02F /* DJInfiniteGridView */,
+				4E18F0BB1C3EA91700CAB02F /* images */,
 				4EBEB98B1C3E3AA500A8C8EC /* DJInfiniteGridViewDemo */,
 				4EBEB98A1C3E3AA500A8C8EC /* Products */,
 			);
@@ -105,15 +122,6 @@
 				4EBEB98D1C3E3AA500A8C8EC /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4EBEB9A31C3E3AB400A8C8EC /* DJInfiniteGridView */ = {
-			isa = PBXGroup;
-			children = (
-				4EBEB9A71C3E3AF300A8C8EC /* DJInfiniteGridView.h */,
-				4EBEB9A81C3E3AF300A8C8EC /* DJInfiniteGridView.m */,
-			);
-			name = DJInfiniteGridView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,15 +181,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E18F0BA1C3E9F8500CAB02F /* 7.png in Resources */,
-				4EBEB9BF1C3E4C1400A8C8EC /* 2.png in Resources */,
 				4EBEB99C1C3E3AA500A8C8EC /* LaunchScreen.storyboard in Resources */,
-				4EBEB9C11C3E4CC500A8C8EC /* 3.png in Resources */,
-				4EBEB9B91C3E492500A8C8EC /* place.png in Resources */,
-				4E18F0B91C3E9F8500CAB02F /* 6.png in Resources */,
-				4E18F0B71C3E9F8500CAB02F /* 4.png in Resources */,
-				4EBEB9BB1C3E4A5100A8C8EC /* 1.png in Resources */,
-				4E18F0B81C3E9F8500CAB02F /* 5.png in Resources */,
+				4E18F0C71C3EA91700CAB02F /* 4.png in Resources */,
+				4E18F0C41C3EA91700CAB02F /* 1.png in Resources */,
+				4E18F0C91C3EA91700CAB02F /* 6.png in Resources */,
+				4E18F0C51C3EA91700CAB02F /* 2.png in Resources */,
+				4E18F0C61C3EA91700CAB02F /* 3.png in Resources */,
+				4E18F0C81C3EA91700CAB02F /* 5.png in Resources */,
+				4E18F0CA1C3EA91700CAB02F /* 7.png in Resources */,
+				4E18F0CB1C3EA91700CAB02F /* place.png in Resources */,
 				4EBEB9991C3E3AA500A8C8EC /* Assets.xcassets in Resources */,
 				4EBEB9971C3E3AA500A8C8EC /* Main.storyboard in Resources */,
 			);
@@ -194,7 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EBEB9A91C3E3AF300A8C8EC /* DJInfiniteGridView.m in Sources */,
+				4E18F0CF1C3EA92100CAB02F /* DJInfiniteGridView.m in Sources */,
 				4EBEB9941C3E3AA500A8C8EC /* ViewController.m in Sources */,
 				4EBEB9911C3E3AA500A8C8EC /* AppDelegate.m in Sources */,
 				4EBEB98E1C3E3AA500A8C8EC /* main.m in Sources */,
