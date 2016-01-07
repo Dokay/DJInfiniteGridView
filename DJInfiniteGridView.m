@@ -10,7 +10,6 @@
 
 #define myWidth self.frame.size.width
 #define myHeight self.frame.size.height
-#define pageSize (myHeight * 0.2 > 25 ? 25 : myHeight * 0.2)
 
 @interface DJInfiniteGridView()<UIScrollViewDelegate>
 
@@ -53,10 +52,7 @@
             self.scrollView.contentSize = CGSizeMake(myWidth, 0);
             self.scrollView.scrollEnabled = NO;
             [self changeImageLeft:10 center:0 right:10];//10 more than 1,to set nil for left and right view
-        }else if (self.MaxImageCount == 2){
-            self.scrollView.scrollEnabled = YES;
-            [self changeImageLeft:_MaxImageCount-1 center:0 right:1];
-        }else{
+        }else {
             self.scrollView.scrollEnabled = YES;
             self.scrollView.contentSize = CGSizeMake(myWidth * 3, 0);
             [self changeImageLeft:_MaxImageCount-1 center:0 right:1];
