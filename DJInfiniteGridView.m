@@ -46,8 +46,21 @@
 {
     if (self.dataSource != nil && [self.dataSource respondsToSelector:@selector(numberOfGridsInInfiniteGridView:)]) {
         self.MaxImageCount = [self.dataSource numberOfGridsInInfiniteGridView:self];
-        self.scrollView.contentSize = CGSizeMake(myWidth * 3, 0);
-        [self changeImageLeft:_MaxImageCount-1 center:0 right:1];
+        if (self.MaxImageCount == 0) {
+            self.scrollView.scrollEnabled = NO;
+            return;
+        }else if(self.MaxImageCount == 1){
+            self.scrollView.contentSize = CGSizeMake(myWidth, 0);
+            self.scrollView.scrollEnabled = NO;
+            [self changeImageLeft:10 center:0 right:10];//10 more than 1,to set nil for left and right view
+        }else if (self.MaxImageCount == 2){
+            self.scrollView.scrollEnabled = YES;
+            [self changeImageLeft:_MaxImageCount-1 center:0 right:1];
+        }else{
+            self.scrollView.scrollEnabled = YES;
+            self.scrollView.contentSize = CGSizeMake(myWidth * 3, 0);
+            [self changeImageLeft:_MaxImageCount-1 center:0 right:1];
+        }
     }else{
         return;
     }
@@ -55,7 +68,9 @@
 
 - (void)jumpToIndex:(NSInteger)gridIndex
 {
-    
+    NSInteger leftIndex = gridIndex == 0 ? self.MaxImageCount - 1 : gridIndex - 1;
+    NSInteger rightIndex = gridIndex == self.MaxImageCount ? 0 : gridIndex + 1;
+    [self changeImageLeft:leftIndex center:gridIndex right:rightIndex];
 }
 
 #pragma mark scrollViewDelegate
@@ -114,15 +129,30 @@
 - (void)changeImageLeft:(NSInteger)LeftIndex center:(NSInteger)centerIndex right:(NSInteger)rightIndex {
     
     if (self.dataSource != nil && [self.dataSource respondsToSelector:@selector(infiniteGridView:forIndex:)]) {
-        _leftImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:LeftIndex]).image;
-        _centerImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:centerIndex]).image;
-        _rightImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:rightIndex]).image;
+        if (LeftIndex < self.MaxImageCount) {
+            _leftImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:LeftIndex]).image;
+        }else{
+            _leftImageView.image = nil;
+        }
+        
+        if (centerIndex < self.MaxImageCount) {
+            _centerImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:centerIndex]).image;
+            _centerImageView.backgroundColor = [UIColor redColor];
+        }else{
+            _centerImageView.image = nil;
+        }
+        
+        if (rightIndex < self.MaxImageCount) {
+            _rightImageView.image = ((UIImageView *)[self.dataSource infiniteGridView:self forIndex:rightIndex]).image;
+        }else{
+            _rightImageView.image = nil;
+        }
+        
     }else{
         _leftImageView = nil;
         _centerImageView = nil;
         _rightImageView = nil;
     }
-    _centerImageView.backgroundColor = [UIColor redColor];
     
     [_scrollView setContentOffset:CGPointMake(myWidth, 0)];
 }
@@ -150,7 +180,6 @@
     _leftImageView = left;
     _centerImageView = center;
     _rightImageView = right;
-    
 }
 
 - (void)imageViewDidTap

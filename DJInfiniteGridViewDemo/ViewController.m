@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    DJInfiniteGridView *gridView = [[DJInfiniteGridView alloc] initWithFrame:CGRectMake(0, 0, 375, 200)];
+    DJInfiniteGridView *gridView = [[DJInfiniteGridView alloc] initWithFrame:CGRectMake(0, 0, 375, 250)];
     gridView.dataSource = self;
     gridView.delegate = self;
     [self.view addSubview:gridView];
@@ -35,22 +35,13 @@
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:gridView.frame];
     imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld",(gridIndex+1)]];
-//    if (gridIndex % 2 == 1) {
-//        imageView.image = [UIImage imageNamed:@"1"];
-//    }else{
-//        imageView.image = [UIImage imageNamed:@"place"];
-//    }
-//    
-//    if (gridIndex == 6) {
-//        imageView.image = [UIImage imageNamed:@"3"];
-//    }
     
     return imageView;
 }
 
 - (NSUInteger)numberOfGridsInInfiniteGridView:(DJInfiniteGridView *)gridView
 {
-    return 3;
+    return 2;
 }
 
 @end
