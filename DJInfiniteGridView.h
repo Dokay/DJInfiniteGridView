@@ -31,7 +31,9 @@
 @property (nonatomic, weak) NSObject<DJInfiniteGridViewDataSource> *dataSource;
 @property (nonatomic, weak) NSObject<DJInfiniteGridDelegate> *delegate;
 
-@property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, readonly) NSInteger currentIndex;
+@property (nonatomic, assign) NSTimeInterval autoScrollElapse;
+@property (nonatomic, assign) BOOL isAutoScroll;
 
 - (void)reloadData;
 - (void)jumpToIndex:(NSInteger)gridIndex;

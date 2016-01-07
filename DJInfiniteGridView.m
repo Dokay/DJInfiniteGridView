@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UIView *leftMirrorView;
 @property (nonatomic, strong) UIView *rightMirrorView;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation DJInfiniteGridView
@@ -56,6 +58,9 @@
             self.scrollView.scrollEnabled = YES;
             self.scrollView.contentSize = CGSizeMake(selfWidth * 3, 0);
             [self changeImageLeft:_maxViewCount-1 center:0 right:1];
+            if (self.isAutoScroll) {
+                [self startTimer];
+            }
         }
     }else{
         return;
@@ -71,22 +76,27 @@
 
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    //    [self setUpTimer];
+    if (self.isAutoScroll) {
+        [self startTimer];
+    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    //    [self removeTimer];
+    if (self.isAutoScroll) {
+        [self stopTimer];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self changeImageWithOffset:scrollView.contentOffset.x];
 }
 
-
 #pragma mark - private method
 - (void)setupCurrentView
 {
     [self addSubview:self.scrollView];
+    self.autoScrollElapse = 2.0;
+    self.isAutoScroll = YES;
 }
 
 - (void)changeImageWithOffset:(CGFloat)offsetX {
@@ -181,6 +191,41 @@
     NSInteger index = sender.view.tag;
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(infiniteGridView:didSelectGridAtIndex:)]) {
         [self.delegate infiniteGridView:self didSelectGridAtIndex:index];
+    }
+}
+
+#pragma mark - timer
+- (void)scorll {
+    [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + selfWidth, 0) animated:YES];
+}
+
+- (void)setAutoScrollElapse:(NSTimeInterval)autoScrollElapse {
+    _autoScrollElapse = autoScrollElapse;
+    [self stopTimer];
+    [self startTimer];
+}
+
+- (void)startTimer {
+    [self stopTimer];
+    if (_autoScrollElapse < 0.5) return;
+    __weak typeof(self) weakself = self;
+    _timer = [NSTimer timerWithTimeInterval:_autoScrollElapse target:weakself selector:@selector(scorll) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)stopTimer {
+    if (_timer == nil) return;
+    [_timer invalidate];
+    _timer = nil;
+}
+
+- (void)setIsAutoScroll:(BOOL)isAutoScroll
+{
+    _isAutoScroll = isAutoScroll;
+    if (_isAutoScroll) {
+        [self startTimer];
+    }else{
+        [self stopTimer];
     }
 }
 
