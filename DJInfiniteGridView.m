@@ -53,11 +53,11 @@
         }else if(self.maxViewCount == 1){
             self.scrollView.contentSize = CGSizeMake(selfWidth, 0);
             self.scrollView.scrollEnabled = NO;
-            [self changeImageLeft:10 center:0 right:10];//10 more than 1,to set nil for left and right view
+            [self changeViewLeft:10 center:0 right:10];//10 more than 1,to set nil for left and right view
         }else {
             self.scrollView.scrollEnabled = YES;
             self.scrollView.contentSize = CGSizeMake(selfWidth * 3, 0);
-            [self changeImageLeft:_maxViewCount-1 center:0 right:1];
+            [self changeViewLeft:_maxViewCount-1 center:0 right:1];
             if (self.isAutoScroll) {
                 [self startTimer];
             }
@@ -71,7 +71,7 @@
 {
     NSInteger leftIndex = gridIndex == 0 ? self.maxViewCount - 1 : gridIndex - 1;
     NSInteger rightIndex = gridIndex == self.maxViewCount ? 0 : gridIndex + 1;
-    [self changeImageLeft:leftIndex center:gridIndex right:rightIndex];
+    [self changeViewLeft:leftIndex center:gridIndex right:rightIndex];
 }
 
 #pragma mark scrollViewDelegate
@@ -95,7 +95,7 @@
 - (void)setupCurrentView
 {
     [self addSubview:self.scrollView];
-    self.autoScrollElapse = 2.0;
+    self.autoScrollInterval = 2.0;
     self.isAutoScroll = YES;
 }
 
@@ -103,41 +103,29 @@
     
     if (offsetX >= selfWidth * 2) {
         _currentIndex++;
-        
         if (_currentIndex == _maxViewCount-1) {
-            
-            [self changeImageLeft:_currentIndex-1 center:_currentIndex right:0];
-            
+            [self changeViewLeft:_currentIndex-1 center:_currentIndex right:0];
         }else if (_currentIndex == _maxViewCount) {
-            
             _currentIndex = 0;
-            [self changeImageLeft:_maxViewCount-1 center:0 right:1];
-            
+            [self changeViewLeft:_maxViewCount-1 center:0 right:1];
         }else {
-            [self changeImageLeft:_currentIndex-1 center:_currentIndex right:_currentIndex+1];
+            [self changeViewLeft:_currentIndex-1 center:_currentIndex right:_currentIndex+1];
         }
     }
-    
     if (offsetX <= 0) {
         _currentIndex--;
-        
         if (_currentIndex == 0) {
-            
-            [self changeImageLeft:_maxViewCount-1 center:0 right:1];
-            
+            [self changeViewLeft:_maxViewCount-1 center:0 right:1];
         }else if (_currentIndex == -1) {
-            
             _currentIndex = _maxViewCount-1;
-            [self changeImageLeft:_currentIndex-1 center:_currentIndex right:0];
-            
+            [self changeViewLeft:_currentIndex-1 center:_currentIndex right:0];
         }else {
-            [self changeImageLeft:_currentIndex-1 center:_currentIndex right:_currentIndex+1];
+            [self changeViewLeft:_currentIndex-1 center:_currentIndex right:_currentIndex+1];
         }
     }
-    
 }
 
-- (void)changeImageLeft:(NSInteger)LeftIndex center:(NSInteger)centerIndex right:(NSInteger)rightIndex {
+- (void)changeViewLeft:(NSInteger)LeftIndex center:(NSInteger)centerIndex right:(NSInteger)rightIndex {
     
     if (self.dataSource != nil && [self.dataSource respondsToSelector:@selector(infiniteGridView:forIndex:)]) {
         
@@ -156,9 +144,11 @@
         
         UIView *centerView = [self viewWithIndex:centerIndex];
         centerView.frame = CGRectMake(selfWidth, 0,selfWidth, selfHeight);
+        [self.scrollView bringSubviewToFront:centerView];
         
         UIView *rightView = [self viewWithIndex:rightIndex];
         rightView.frame = CGRectMake(selfWidth * 2, 0,selfWidth, selfHeight);
+        [self.scrollView bringSubviewToFront:rightView];
     }
     
     [_scrollView setContentOffset:CGPointMake(selfWidth, 0)];
@@ -199,17 +189,17 @@
     [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + selfWidth, 0) animated:YES];
 }
 
-- (void)setAutoScrollElapse:(NSTimeInterval)autoScrollElapse {
-    _autoScrollElapse = autoScrollElapse;
+- (void)setAutoScrollInterval:(NSTimeInterval)autoScrollInterval {
+    _autoScrollInterval = autoScrollInterval;
     [self stopTimer];
     [self startTimer];
 }
 
 - (void)startTimer {
     [self stopTimer];
-    if (_autoScrollElapse < 0.5) return;
+    if (_autoScrollInterval < 0.5) return;
     __weak typeof(self) weakself = self;
-    _timer = [NSTimer timerWithTimeInterval:_autoScrollElapse target:weakself selector:@selector(scorll) userInfo:nil repeats:YES];
+    _timer = [NSTimer timerWithTimeInterval:_autoScrollInterval target:weakself selector:@selector(scorll) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 

@@ -31,6 +31,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    NSLog(@"dealloc");
+}
+
 - (UIView *)infiniteGridView:(DJInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:gridView.frame];
@@ -41,7 +46,18 @@
 
 - (NSUInteger)numberOfGridsInInfiniteGridView:(DJInfiniteGridView *)gridView
 {
-    return 2;
+    return 7;
 }
+
+//- (void)infiniteGridView:(DJInfiniteGridView *)gridView didSelectGridAtIndex:(NSInteger)gridIndex
+//{
+//    if (gridIndex == 0) {
+//        ViewController *controller = [ViewController new];
+//        [self presentViewController:controller animated:YES completion:nil];
+//    }else{
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }
+//    
+//}
 
 @end

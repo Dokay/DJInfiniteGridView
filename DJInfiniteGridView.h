@@ -32,7 +32,10 @@
 @property (nonatomic, weak) NSObject<DJInfiniteGridDelegate> *delegate;
 
 @property (nonatomic, readonly) NSInteger currentIndex;
-@property (nonatomic, assign) NSTimeInterval autoScrollElapse;
+/**
+ *  time interval ,deafault is 2s
+ */
+@property (nonatomic, assign) NSTimeInterval autoScrollInterval;
 @property (nonatomic, assign) BOOL isAutoScroll;
 
 - (void)reloadData;
