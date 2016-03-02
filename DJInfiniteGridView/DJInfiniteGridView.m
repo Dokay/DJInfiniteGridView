@@ -127,11 +127,18 @@
 
 - (void)changeViewLeft:(NSInteger)LeftIndex center:(NSInteger)centerIndex right:(NSInteger)rightIndex {
     
+    for (UIView *view in self.viewsArray) {
+        if (![view isEqual:[NSNull null]]) {
+            view.hidden = YES;
+        }
+    }
+    
     if (self.dataSource != nil && [self.dataSource respondsToSelector:@selector(infiniteGridView:forIndex:)]) {
         
         UIView *leftView;
         if (self.maxViewCount != 2) {
             leftView = [self viewWithIndex:LeftIndex];
+            leftView.hidden = NO;
         }else{
             if (centerIndex == 0) {
                 leftView = self.leftMirrorView;
@@ -143,10 +150,12 @@
         leftView.frame = CGRectMake(0, 0,selfWidth, selfHeight);
         
         UIView *centerView = [self viewWithIndex:centerIndex];
+        centerView.hidden = NO;
         centerView.frame = CGRectMake(selfWidth, 0,selfWidth, selfHeight);
         [self.scrollView bringSubviewToFront:centerView];
         
         UIView *rightView = [self viewWithIndex:rightIndex];
+        rightView.hidden = NO;
         rightView.frame = CGRectMake(selfWidth * 2, 0,selfWidth, selfHeight);
         [self.scrollView bringSubviewToFront:rightView];
     }
@@ -186,10 +195,13 @@
 
 #pragma mark - timer
 - (void)scorll {
-    [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + selfWidth, 0) animated:YES];
+    if (!self.scrollView.isDragging) {
+        [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + selfWidth, 0) animated:YES];
+    }
 }
 
-- (void)setAutoScrollInterval:(NSTimeInterval)autoScrollInterval {
+- (void)setAutoScrollInterval:(NSTimeInterval)autoScrollInterval
+{
     _autoScrollInterval = autoScrollInterval;
     [self stopTimer];
     [self startTimer];
@@ -197,7 +209,12 @@
 
 - (void)startTimer {
     [self stopTimer];
-    if (_autoScrollInterval < 0.5) return;
+    if (self.maxViewCount < 2) {
+        return;
+    }
+    if (_autoScrollInterval < 0.5) {
+        return;
+    }
     __weak typeof(self) weakself = self;
     _timer = [NSTimer timerWithTimeInterval:_autoScrollInterval target:weakself selector:@selector(scorll) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
