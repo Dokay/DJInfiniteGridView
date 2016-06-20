@@ -195,13 +195,10 @@
 
 #pragma mark - timer
 - (void)scorll {
-    if (!self.scrollView.isDragging) {
-        [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + selfWidth, 0) animated:YES];
-    }
+    [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + selfWidth, 0) animated:YES];
 }
 
-- (void)setAutoScrollInterval:(NSTimeInterval)autoScrollInterval
-{
+- (void)setAutoScrollInterval:(NSTimeInterval)autoScrollInterval {
     _autoScrollInterval = autoScrollInterval;
     [self stopTimer];
     [self startTimer];
@@ -209,12 +206,7 @@
 
 - (void)startTimer {
     [self stopTimer];
-    if (self.maxViewCount < 2) {
-        return;
-    }
-    if (_autoScrollInterval < 0.5) {
-        return;
-    }
+    if (_autoScrollInterval < 0.5) return;
     __weak typeof(self) weakself = self;
     _timer = [NSTimer timerWithTimeInterval:_autoScrollInterval target:weakself selector:@selector(scorll) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
