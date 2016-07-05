@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DJInfiniteGridView"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "This is a custom view for scrollView"
   s.homepage     = "https://github.com/Dokay/DJInfiniteGridView"
   s.license      = { :type => "MIT", :file => "LICENSE" }
